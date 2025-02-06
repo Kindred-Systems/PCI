@@ -1,27 +1,27 @@
-# Kindred Platform Client
+Polynomial Continuous Improvement (PCI): A Modular AI-Driven Project Management Framework
 
-The **Kindred Platform Client** is a standalone frontend application for the **Kindred Platform Community Edition**. It provides an interactive interface for **managing engineering projects, visualizing workflows, and integrating AI-assisted project management tools**. This application is designed to operate within a **containerized client-server architecture**, enabling a **self-hosted, single-user environment** with planned support for **Snap Store deployment**.
+Polynomial Continuous Improvement (PCI) is an AI-assisted project management and workflow optimization system designed to dynamically decompose, manage, and execute projects using workflow-based task automation. PCI leverages machine learning, Langflow-driven AI agents, and a modular architecture to structure projects into scalable, iterative tasks. It aims to create a self-improving project execution model that refines itself over time through workflow tagging, structured data reconciliation, and machine learning-driven decision-making.
 
-## Overview
+At its core, PCI facilitates problem framing, project decomposition, and dynamic task generation, ensuring that projects adapt to real-world constraints in an automated yet user-guided environment. The system integrates a Flutter-based frontend, a Go-powered modular backend, and Langflow API-driven workflows, allowing for flexible project structures across different industries.
+Workflow Progression and Task Automation
 
-Kindred Platform Client leverages **Langflow-inspired UI components** to facilitate **workflow visualization** and **automated project structuring**. It is designed to help engineers and developers **map project needs, organize solution components, and optimize workflows** using **data-driven decision-making**.
+The PCI system follows a structured yet adaptable workflow progression:
 
-This system integrates with the **Kindred client server backend**, which processes project data, executes model-driven automation, and maintains project lifecycle integrity. The frontend provides **an intuitive interface for managing project resources, reviewing predictive performance analytics, and refining workflow optimizations**.
+    Problem Framing → A chatbot interface powered by OpenAI’s o3-mini API allows users to define a problem, generating potential project solutions through Langflow-driven inference models.
 
-## Features
+    Solution Selection → Users interact with a list of AI-generated potential project solutions, selecting the most viable one while tabling alternatives for future iterations. Selected solutions are stored in a Solutions Board, where they can be refined or modified before progressing to the next stage.
 
-Kindred Platform Client includes tools for **project workflow visualization**, **AI-powered recommendations**, and **secure, self-contained execution**. Users can **structure engineering projects dynamically**, aligning resources with project requirements through **automated decision-making**.
+    Task Decomposition → The selected solution is processed using workflow-based task assignment. A Langflow-generated workflow is used to dynamically break down the solution into high-level tasks, with each task assigned a workflow method tag. In this initial implementation, an "agile" workflow method is used to ensure structured task breakdowns.
 
-Future updates will introduce **expanded API support, deeper workflow automation, and seamless deployment options**.
+    Workflow Execution → Tasks are divided into machine-executable and human-executable deliverables. Machine tasks are handled through Langflow-integrated AI-driven workflows, while human tasks are structured based on workflow-generated deliverable formats.
 
-## Roadmap
+    Data Reconciliation and Indexing → Tasks and workflows generate unstructured execution data, which is stored in a NoSQL database. Structured metadata is then reconciled into a structured PostgreSQL database, ensuring that all project data remains searchable, indexable, and optimized for machine learning feedback loops.
 
-Future updates will include **extended API access, expanded workflow automation features, and a Snap Store release** for simple distribution and updates.
+Architecture and System Components
 
-## Additional Information  
+PCI is designed as a modular, containerized system built on a Flutter frontend, a Go microservices backend, and Langflow workflow integration. The Go backend handles modular workflow methods, each responsible for specific execution models. These include project decomposition, task management, and workflow execution, all of which are dynamically triggered based on workflow method tags.
 
-For more details about **Kindred Systems**, visit:  
-[www.kindred-systems.com](https://www.kindred-systems.com)  
+Projects within PCI are iteratively refined, with tasks dynamically adjusting to real-world performance metrics and AI-assisted recommendations. This approach creates a self-improving project model, where PCI continuously refines how solutions are decomposed, executed, and evaluated over time.
+Conclusion
 
-For more information on **Kindred Platform Community Edition**, visit the product page:  
-[www.kindred-systems.com/pci](https://www.kindred-systems.com/pci)
+PCI represents a next-generation AI-driven project execution framework that combines workflow-based automation, structured/unstructured data reconciliation, and adaptive machine learning models to optimize project workflows. It introduces Langflow-powered workflow tagging, microservice-based modular execution, and AI-assisted decision-making, ensuring that projects evolve dynamically in response to real-world variables. By focusing on scalability, modularity, and AI-enhanced workflow progression, PCI is set to redefine how projects are structured, managed, and optimized in software development, engineering, and beyond.
