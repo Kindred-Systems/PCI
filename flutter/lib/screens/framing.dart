@@ -19,12 +19,14 @@ class _FramingScreenState extends State<FramingScreen> {
   void initState() {
     super.initState();
     _checkApiHealth();
-    Timer.periodic(Duration(seconds: 5), (timer) => _checkApiHealth());
+    Timer.periodic(const Duration(seconds: 5), (timer) => _checkApiHealth());
   }
 
   Future<void> _checkApiHealth() async {
+    final String apiUrl = "http://localhost:8081/api/health"; // Change this for emulator
+
     try {
-      final response = await http.get(Uri.parse("http://host.docker.internal:8081/api/chatbot"));
+      final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         setState(() {
           _isApiHealthy = true;
@@ -51,23 +53,31 @@ class _FramingScreenState extends State<FramingScreen> {
 
     _controller.clear();
 
-    final response = await http.post(
-      Uri.parse("http://10.0.2.2:8081/api/chatbot"),
-      headers: {"Content-Type": "application/json"},
-      body: jsonEncode({"problem_description": userMessage}),
-    );
+    final String apiUrl = "http://localhost:8081/api/chatbot"; // Change this for emulator
 
-    if (response.statusCode == 200) {
-      List<dynamic> solutions = jsonDecode(response.body)["solutions"];
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"problem_description": userMessage}),
+      );
 
+      if (response.statusCode == 200) {
+        List<dynamic> solutions = jsonDecode(response.body)["solutions"];
+
+        setState(() {
+          for (String solution in solutions) {
+            messages.add({"role": "bot", "text": solution});
+          }
+        });
+      } else {
+        setState(() {
+          messages.add({"role": "bot", "text": "Failed to retrieve solutions."});
+        });
+      }
+    } catch (e) {
       setState(() {
-        for (String solution in solutions) {
-          messages.add({"role": "bot", "text": solution});
-        }
-      });
-    } else {
-      setState(() {
-        messages.add({"role": "bot", "text": "Failed to retrieve solutions."});
+        messages.add({"role": "bot", "text": "Error: Unable to connect to server."});
       });
     }
   }
@@ -75,7 +85,7 @@ class _FramingScreenState extends State<FramingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Problem Framing")),
+      appBar: AppBar(title: const Text("Problem Framing")),
       body: Column(
         children: [
           Padding(
@@ -87,7 +97,7 @@ class _FramingScreenState extends State<FramingScreen> {
                   color: _isApiHealthy ? Colors.green : Colors.red,
                   size: 12,
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Text(
                   _isApiHealthy ? "Server Online" : "Server Offline",
                   style: TextStyle(fontSize: 12, color: _isApiHealthy ? Colors.green : Colors.red),
@@ -97,7 +107,7 @@ class _FramingScreenState extends State<FramingScreen> {
           ),
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               itemCount: messages.length,
               itemBuilder: (context, index) {
                 final message = messages[index];
@@ -106,8 +116,8 @@ class _FramingScreenState extends State<FramingScreen> {
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 4),
-                    padding: EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: message["role"] == "user"
                           ? Colors.blue[200]
@@ -127,16 +137,16 @@ class _FramingScreenState extends State<FramingScreen> {
                 Expanded(
                   child: TextField(
                     controller: _controller,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: "Describe your problem...",
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: sendMessage,
-                  child: Text("Send"),
+                  child: const Text("Send"),
                 ),
               ],
             ),
