@@ -14,52 +14,9 @@ Kindred Platform Client includes tools for **project workflow visualization**, *
 
 Future updates will introduce **expanded API support, deeper workflow automation, and seamless deployment options**.
 
-## Getting Started
-
-### Clone the Repository  
-To begin using the Kindred Platform Client, clone the repository and navigate into the project directory.
-
-plaintext
-git clone https://github.com/Kindred-Systems/kindred-platform-client.git  
-cd kindred-platform-client  
-
-### Install Dependencies  
-Ensure that all necessary dependencies are installed before running the application.
-
-plaintext
-npm install  
-or  
-flutter pub get  
-
-### Running the Application  
-For development mode, run the following command to start the application:
-
-plaintext
-npm start  
-or  
-flutter run  
-
-To build the application for production deployment, use:
-
-plaintext
-npm run build  
-or  
-flutter build web  
-
-### Containerized Deployment  
-For containerized execution, build and run the Docker image:
-
-plaintext
-docker build -t kindred-client .  
-docker run -p 8080:8080 kindred-client  
-
 ## Roadmap
 
 Future updates will include **extended API access, expanded workflow automation features, and a Snap Store release** for simple distribution and updates.
-
-## License
-
-Kindred Platform Client is released under the **MIT License**, allowing open-source contributions while maintaining commercial distribution flexibility.
 
 ## Additional Information  
 
