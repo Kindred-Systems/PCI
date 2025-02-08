@@ -1,9 +1,0 @@
-[submodule "go_server"]
-	path = go_server
-	url = https://github.com/Kindred-Systems/pci_go_server.git
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/Kindred-Systems/pci_frontend.git
-[submodule "database"]
-	path = database
-	url = https://github.com/Kindred-Systems/pci_database.git
