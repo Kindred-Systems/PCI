@@ -4,6 +4,3 @@
 [submodule "database"]
 	path = database
 	url = git@github.com:Kindred-Systems/pci_database.git
-[submodule "frontend"]
-	path = frontend
-	url = git@github.com:Kindred-Systems/pci_react.git
