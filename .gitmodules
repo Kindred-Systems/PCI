@@ -4,3 +4,7 @@
 [submodule "database"]
 	path = database
 	url = git@github.com:Kindred-Systems/pci_database.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/Kindred-Systems/pci_frontend.git
+	branch = develop
