@@ -1,0 +1,63 @@
+# PCI Project Overview
+
+This project is a modern web application with a microservices architecture, consisting of three main components:
+
+## Architecture
+
+1. Frontend
+   - Built with modern web technologies (TypeScript, Vite)
+   - Uses Tailwind CSS for styling
+   - Runs on port 3000
+   - Containerized using Docker
+
+2. Backend
+   - Written in Go
+   - Structured with clean architecture principles
+   - Components:
+     - API (Proto definitions)
+     - Gateway (Main service entry point)
+     - Internal packages
+   - Runs on port 8080
+   - Containerized using Docker
+
+3. Database
+   - PostgreSQL 15
+   - Runs on port 5432
+   - Persistent storage through Docker volumes
+   - Configured with default database 'pci_db'
+
+## Project Structure
+
+```
+.
+├── backend/
+│   ├── api/         # API definitions
+│   ├── cmd/         # Command line entry points
+│   ├── gateway/     # API Gateway implementation
+│   └── internal/    # Internal packages
+├── database/        # Database-related files
+├── frontend/        # Web client application
+└── docker-compose.yml
+```
+
+## Deployment
+
+The project uses Docker Compose for containerization and orchestration:
+- All services are containerized
+- Inter-service communication is handled through Docker networking
+- Environment variables are used for configuration
+- Persistent database storage is managed through Docker volumes
+
+## Development Setup
+
+To run the project:
+1. Ensure Docker and Docker Compose are installed
+2. Set required environment variables:
+   - PCI_DB_USER
+   - PCI_DB_PASS
+3. Run `docker-compose up` to start all services
+
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8080
+- Database: localhost:5432
