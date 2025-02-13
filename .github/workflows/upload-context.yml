@@ -20,7 +20,7 @@ jobs:
 
       - name: Compress files as ZIP
         run: |
-          zip -r context-files.zip ./context-folder/
+          zip -r context-files.zip . -i ./context-folder/*
 
       - name: Upload Context to OpenAI
         env:
