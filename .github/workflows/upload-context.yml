@@ -14,22 +14,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up environment
+      - name: Convert Context Files to JSONL
         run: |
-          echo "Setting up required dependencies..."
+          echo "Creating JSONL file..."
+          echo "" > project-context.jsonl
+          
+          # Process all markdown, text, and code files
+          for file in $(find ./context-folder -type f \( -name "*.md" -o -name "*.txt" -o -name "*.py" "*.tsx" ".ts""*.html"".css""".json"\)); do
+            if [[ -f "$file" ]]; then
+              content=$(jq -Rs '.' < "$file")  # Escape and format as JSON string
+              echo "{\"file\": \"$file\", \"content\": $content}" >> project-context.jsonl
+            fi
+          done
+          
+          echo "✅ JSONL file created: project-context.jsonl"
 
-      - name: Compress files as ZIP
-        run: |
-          zip -r context-files.zip . -i ./context-folder/*
-
-      - name: Upload Context to OpenAI
+      - name: Upload JSONL to OpenAI
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
+          echo "Uploading project-context.jsonl to OpenAI..."
           RESPONSE=$(curl -s -X POST "https://api.openai.com/v1/files" \
             -H "Authorization: Bearer $OPENAI_API_KEY" \
             -H "Content-Type: multipart/form-data" \
-            -F "file=@context-files.zip" \
+            -F "file=@project-context.jsonl" \
             -F "purpose=fine-tune")
 
           echo "Upload Response: $RESPONSE"
