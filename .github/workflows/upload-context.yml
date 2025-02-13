@@ -20,7 +20,7 @@ jobs:
           echo "" > project-context.jsonl
           
           # Process all markdown, text, and code files
-          for file in $(find ./context-folder -type f \( -name "*.md" -o -name "*.txt" -o -name "*.py" "*.tsx" ".ts""*.html"".css""".json"\)); do
+          for file in $(find ./context-folder -type f \( -name "*.md" -o -name "*.txt" -o -name "*.py" -o -name "*.tsx" -o -name "*.ts" -o -name "*.html" -o -name "*.css" -o -name "*.json" \)); do
             if [[ -f "$file" ]]; then
               content=$(jq -Rs '.' < "$file")  # Escape and format as JSON string
               echo "{\"file\": \"$file\", \"content\": $content}" >> project-context.jsonl
@@ -41,13 +41,15 @@ jobs:
             -F "purpose=fine-tune")
 
           echo "Upload Response: $RESPONSE"
+          echo "$RESPONSE" > response.json
 
       - name: Handle API Response
         run: |
           echo "Checking API Response..."
+          RESPONSE=$(cat response.json)
           if [[ $RESPONSE == *"error"* ]]; then
             echo "❌ Upload failed! Response:"
-            echo $RESPONSE
+            echo "$RESPONSE"
             exit 1
           else
             echo "✅ Upload successful!"
