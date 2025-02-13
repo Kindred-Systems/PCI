@@ -14,20 +14,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Convert Context Files to JSONL
+      - name: Convert Context Files to Valid JSONL
         run: |
-          echo "Creating JSONL file..."
-          echo "" > project-context.jsonl
-          
+          echo "Creating properly formatted JSONL file..."
+          > project-context.jsonl  # Initialize empty JSONL file
+
           # Process all markdown, text, and code files
           for file in $(find ./context-folder -type f \( -name "*.md" -o -name "*.txt" -o -name "*.py" -o -name "*.tsx" -o -name "*.ts" -o -name "*.html" -o -name "*.css" -o -name "*.json" \)); do
             if [[ -f "$file" ]]; then
-              content=$(jq -Rs '.' < "$file")  # Escape and format as JSON string
-              echo "{\"file\": \"$file\", \"content\": $content}" >> project-context.jsonl
+              content=$(jq -Rs '.' < "$file")  # Escape and format content as JSON string
+              echo "{\"prompt\": \"Context from file: $file\", \"completion\": $content}" >> project-context.jsonl
             fi
           done
           
-          echo "✅ JSONL file created: project-context.jsonl"
+          echo "✅ JSONL file created successfully: project-context.jsonl"
 
       - name: Upload JSONL to OpenAI
         env:
