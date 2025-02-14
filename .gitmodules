@@ -8,3 +8,6 @@
 	path = frontend
 	url = https://github.com/Kindred-Systems/pci_frontend.git
 	branch = develop
+[submodule "sdk"]
+	path = sdk
+	url = https://github.com/Kindred-Systems/pci_sdk.git
