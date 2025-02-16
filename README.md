@@ -88,28 +88,78 @@ Our platform integrates with tools like **Odoo ERP** and **Google Cloud Platform
 ## 📂 **Directory Structure**
 
 ```
-root/
-├── server/
-│   ├── services/
-│   │   ├── chatbot.go
-│   │   ├── task_manager.go
-│   │   └── workflow_controller.go
-│   ├── api/
-│   │   └── proto/
-│   │       └── pci.proto
+.
+├── backend
+│   ├── api
+│   │   └── proto
+│   ├── cmd
+│   │   └── server
+│   ├── internal
+│   │   ├── auth
+│   │   ├── cache
+│   │   ├── database
+│   │   ├── gateway
+│   │   ├── middleware
+│   │   ├── models
+│   │   ├── pyx
+│   │   ├── routes
+│   │   └── tasks
+│   ├── py
+│   │   └── uilities
+│   ├── go.mod
+│   ├── go.sum
 │   └── main.go
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   └── App.tsx
-│   ├── public/
-│   └── index.html
-├── langflow/
-│   └── workflows/
-├── docker/
-│   └── docker-compose.yml
+├── database
+├── docs
+│   ├── lexicon.md
+│   └── user_workflow.md
+├── frontend
+│   ├── public
+│   │   └── vite.svg
+│   ├── src
+│   │   ├── api
+│   │   ├── assets
+│   │   ├── components
+│   │   ├── pages
+│   │   ├── store
+│   │   ├── styles
+│   │   ├── types
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   ├── main.tsx
+│   │   ├── router.tsx
+│   │   └── vite-env.d.ts
+│   ├── docs.txt
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── postcss.config.cjs
+│   ├── README.md
+│   ├── tailwind.config.cjs
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.cts
+├── sdk
+│   ├── api
+│   │   └── proto
+│   ├── cmd
+│   │   ├── auth.go
+│   │   └── root.go
+│   ├── internal
+│   │   ├── api
+│   │   └── auth
+│   ├── go.mod
+│   ├── go.sum
+│   ├── main.go
+│   ├── pci
+│   └── README.md
+├── docker-compose.yml
+├── docs.txt
 └── README.md
+
 ```
 
 ---
